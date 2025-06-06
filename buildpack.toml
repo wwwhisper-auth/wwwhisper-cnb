@@ -14,3 +14,9 @@ api = "0.10"
 [[targets]]
   os = "linux"
   arch = "amd64"
+
+[types]
+  build = true
+# TODO: support cache
+#  cache = true
+  launch = true
