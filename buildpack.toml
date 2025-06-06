@@ -1,0 +1,16 @@
+api = "0.10"
+
+[buildpack]
+  id = "auth/wwwhisper"
+  version = "1.0.0"
+
+[[stacks]]
+  id = "*"
+
+[[targets]]
+  os = "linux"
+  arch = "arm64"
+
+[[targets]]
+  os = "linux"
+  arch = "amd64"
