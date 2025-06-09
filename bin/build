@@ -9,22 +9,24 @@ set -euo pipefail
 # env_dir="$2/env"
 # plan_path="$3"
 
-DST_DIR="${CNB_LAYERS_DIR}/wwwhisper/"
+LAYER_DIR="${CNB_LAYERS_DIR}/wwwhisper/"
 
 function wwwhisper_log() {
   echo "---> wwwhisper-buildpack: $*"
 }
 
-mkdir -p "${DST_DIR}/bin"
+mkdir -p "${LAYER_DIR}/bin" .profile.d
 
-tar -zxf "wwwhisper-${CNB_TARGET_ARCH}.tgz" -C "${DST_DIR}/bin/"
-
-
-wwwhisper_version=$(${DST_DIR}/bin/wwwhisper -version)
-wwwhisper_log "Installed auth proxy ${wwwhisper_version} to ${DST_DIR}"
+tar -zxf "${CNB_BUILDPACK_DIR}/wwwhisper-${CNB_TARGET_ARCH}.tgz" -C "${LAYER_DIR}/bin/"
 
 
-cat > "${DST_DIR}.toml" << EOL
+wwwhisper_version=$(${LAYER_DIR}/bin/wwwhisper -version)
+wwwhisper_log "Installed auth proxy ${wwwhisper_version} to ${LAYER_DIR}"
+
+cp ${CNB_BUILDPACK_DIR}/.profile.d/start-wwwhisper.sh .profile.d/
+wwwhisper_log "Added start-wwwhisper.sh to .profile.d/"
+
+cat > "${LAYER_DIR}.toml" << EOL
 [types]
 build = true
 launch = true
