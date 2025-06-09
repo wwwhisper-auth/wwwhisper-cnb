@@ -27,7 +27,7 @@ then
   return 0
 fi
 
-WWWHISPER_PID_FILE=`pwd`/wwwhisper/logs/wwwhisper.pid
+WWWHISPER_PID_FILE=`pwd`/wwwhisper.pid
 
 function wwwhisper_log() {
   echo "buildpack=wwwhisper $*"
