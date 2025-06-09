@@ -1,18 +1,21 @@
 #!/usr/bin/env bash
 
+# spec doc:
+# https://github.com/buildpacks/spec/blob/main/buildpack.md
+
 set -euo pipefail
 
-#layers_dir="$1"
-#env_dir="$2/env"
-#plan_path="$3"
+# layers_dir="$1"
+# env_dir="$2/env"
+# plan_path="$3"
 
 DST_DIR="${CNB_LAYERS_DIR}/wwwhisper/"
 
 function wwwhisper_log() {
-  echo "-----> wwwhisper-buildpack: $*"
+  echo "---> wwwhisper-buildpack: $*"
 }
 
-mkdir -p "${DST_DIR}/bin" "${BUILD_DIR}/.profile.d"
+mkdir -p "${DST_DIR}/bin"
 
 tar -zxf "wwwhisper-${CNB_TARGET_ARCH}.tgz" -C "${DST_DIR}/bin/"
 
@@ -20,8 +23,11 @@ tar -zxf "wwwhisper-${CNB_TARGET_ARCH}.tgz" -C "${DST_DIR}/bin/"
 wwwhisper_version=$(${DST_DIR}/bin/wwwhisper -version)
 wwwhisper_log "Installed auth proxy ${wwwhisper_version} to ${DST_DIR}"
 
-cp .profile.d/start-wwwhisper.sh "${BUILD_DIR}/.profile.d/"
-wwwhisper_log "Added start-wwwhisper.sh to .profile.d/"
 
+cat > "${DST_DIR}.toml" << EOL
+[types]
+build = true
+launch = true
+EOL
 
 exit 0
