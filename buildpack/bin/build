@@ -25,6 +25,8 @@ wwwhisper_log "Installed auth proxy ${wwwhisper_version} to ${LAYER_DIR}"
 
 cp ${CNB_BUILDPACK_DIR}/.profile.d/start-wwwhisper.sh .profile.d/
 wwwhisper_log "Added start-wwwhisper.sh to .profile.d/"
+wwwhisper_log "ENV IS"
+env
 
 cat > "${LAYER_DIR}.toml" << EOL
 [types]
