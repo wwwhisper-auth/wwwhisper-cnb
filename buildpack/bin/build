@@ -9,7 +9,7 @@ set -euo pipefail
 # env_dir="$2/env"
 # plan_path="$3"
 
-LAYER_DIR="${CNB_LAYERS_DIR}/wwwhisper/"
+LAYER_DIR="${CNB_LAYERS_DIR}/wwwhisper"
 
 function wwwhisper_log() {
   echo "---> wwwhisper-buildpack: $*"
