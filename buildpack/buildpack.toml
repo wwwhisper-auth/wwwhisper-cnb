@@ -2,7 +2,7 @@ api = "0.10"
 
 [buildpack]
   id = "auth/wwwhisper"
-  version = "1.0.0"
+  version = "1.0.1"
 
 [[stacks]]
   id = "*"
