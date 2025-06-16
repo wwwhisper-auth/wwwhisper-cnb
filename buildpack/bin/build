@@ -19,14 +19,12 @@ mkdir -p "${LAYER_DIR}/bin" .profile.d
 
 tar -zxf "${CNB_BUILDPACK_DIR}/wwwhisper-${CNB_TARGET_ARCH}.tgz" -C "${LAYER_DIR}/bin/"
 
+cp "${CNB_BUILDPACK_DIR}/wwwhisper-auth" "${LAYER_DIR}/bin/"
+
 
 wwwhisper_version=$(${LAYER_DIR}/bin/wwwhisper -version)
 wwwhisper_log "Installed auth proxy ${wwwhisper_version} to ${LAYER_DIR}"
 
-cp ${CNB_BUILDPACK_DIR}/.profile.d/start-wwwhisper.sh .profile.d/
-wwwhisper_log "Added start-wwwhisper.sh to .profile.d/"
-wwwhisper_log "ENV IS"
-env
 
 cat > "${LAYER_DIR}.toml" << EOL
 [types]

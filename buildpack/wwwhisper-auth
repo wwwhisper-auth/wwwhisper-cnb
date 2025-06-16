@@ -20,14 +20,7 @@
 # bypass authorization).
 
 
-# .profile.d scripts are also sourced by `heroku ps:exec`, in such
-# case $PORT is not set and this script should do nothing.
-if [[ -z "${PORT}" ]]
-then
-  return 0
-fi
-
-WWWHISPER_PID_FILE=`pwd`/wwwhisper.pid
+WWWHISPER_PID_FILE=`pwd`/wwwhisper/logs/wwwhisper.pid
 
 function wwwhisper_log() {
   echo "buildpack=wwwhisper $*"
@@ -135,3 +128,4 @@ wwwhisper_main
 # would make two auth requests per each incomming request).
 unset WWWHISPER_URL
 
+exec bash -c "$*"
