@@ -20,7 +20,7 @@
 # bypass authorization).
 
 
-WWWHISPER_PID_FILE=`pwd`/wwwhisper/logs/wwwhisper.pid
+WWWHISPER_PID_FILE=`pwd`/.wwwhisper.pid
 
 function wwwhisper_log() {
   echo "buildpack=wwwhisper $*"
@@ -80,7 +80,7 @@ function wwwhisper_main() {
     trap "" SIGTERM
 
     wwwhisper_log "Staring wwwhisper auth proxy."
-    ./wwwhisper/bin/wwwhisper -listen ${public_port} -proxyto ${PORT} -pidfile ${WWWHISPER_PID_FILE} &
+    wwwhisper -listen ${public_port} -proxyto ${PORT} -pidfile ${WWWHISPER_PID_FILE} &
 
     local proxy_pid="$!"
 

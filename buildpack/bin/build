@@ -15,7 +15,7 @@ function wwwhisper_log() {
   echo "---> wwwhisper-buildpack: $*"
 }
 
-mkdir -p "${LAYER_DIR}/bin" .profile.d
+mkdir -p "${LAYER_DIR}/bin"
 
 tar -zxf "${CNB_BUILDPACK_DIR}/wwwhisper-${CNB_TARGET_ARCH}.tgz" -C "${LAYER_DIR}/bin/"
 
