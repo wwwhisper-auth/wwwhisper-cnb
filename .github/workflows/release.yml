@@ -1,0 +1,34 @@
+name: Package and Release Staging Buildpack
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  package-and-release:
+    name: Package Buildpack and Create Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Pack CLI
+        uses: buildpacks/github-actions/setup-pack@v5.1.0
+
+      - name: Package buildpack
+        run: |
+          pack buildpack package wwwhisper-staging --path buildpack --format file
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: staging-${{ github.sha }}
+          name: Staging Release - ${{ github.sha }}
+          body: |
+            Automated staging release from commit ${{ github.sha }}
+            This release contains the packaged wwwhisper buildpack.
+          files: |
+            wwwhisper-staging.cnb
+          prerelease: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
