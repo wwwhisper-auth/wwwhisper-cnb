@@ -17,18 +17,18 @@ jobs:
 
       - name: Package buildpack
         run: |
-          pack buildpack package wwwhisper-staging --path buildpack --format file
+          pack buildpack package wwwhisper --path buildpack --format file
 
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
           tag_name: staging
-          name: Staging Release - ${{ github.ref }} ${{ github.sha }}
+          name: Staging Release - ${{ github.sha }}
           body: |
             Automated staging release from commit ${{ github.sha }}
             This release contains the packaged wwwhisper buildpack.
           files: |
-            wwwhisper-staging.cnb
+            wwwhisper.cnb
           prerelease: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
