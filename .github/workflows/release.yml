@@ -22,8 +22,8 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: staging-${{ github.sha }}
-          name: Staging Release - ${{ github.sha }}
+          tag_name: staging
+          name: Staging Release - ${{ github.ref }} ${{ github.sha }}
           body: |
             Automated staging release from commit ${{ github.sha }}
             This release contains the packaged wwwhisper buildpack.
