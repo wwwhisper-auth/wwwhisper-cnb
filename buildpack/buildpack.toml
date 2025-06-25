@@ -1,16 +1,14 @@
 api = "0.10"
 
 [buildpack]
-  id = "auth/wwwhisper"
-  version = "1.0.1"
+  id = "wwwhisper/wwwhisper-cnb"
+  version = "1.0.5"
+  name = "wwwhisper"
+  homepage = "https://github.com/wwwhisper-auth/wwwhisper-cnb"
+  description = "Authentication and authorization HTTP proxy for web apps"
 
 [[stacks]]
   id = "*"
 
 [[targets]]
   os = "linux"
-  arch = "arm64"
-
-[[targets]]
-  os = "linux"
-  arch = "amd64"
