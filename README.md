@@ -50,14 +50,14 @@ looks like this:
 4. Commit the changes:
 
    ```
-   git add project.toml Procfile
+   git add project.toml Procfile;
    git commit -m "Enable wwwhisper buildpack";
-   git push heroku main # or master
+   git push heroku main # or master;
    ```
 
-   After these operations, opening your application URL will show a login
-   prompt. Enter your Heroku application owner email to receive a login
-   link.
+After these operations, opening your application URL will show a login
+prompt. Enter your Heroku application owner email to receive a login
+link.
 
 ## Technical Details
 
