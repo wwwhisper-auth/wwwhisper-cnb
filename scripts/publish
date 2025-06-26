@@ -2,11 +2,11 @@
 
 set -e
 
-echo "Creating new buildpack version"
+echo "Packaging a buildpack into Docker image"
 pack buildpack package wwwhisper/wwwhisper-cnb --path buildpack # --config  ./package.toml
 
 echo "Pushing the new version to docker"
 docker push wwwhisper/wwwhisper-cnb
 
-echo "Putting the new version in the CNB registry"
+echo "Publishing buildpack to CNB registry"
 pack buildpack register wwwhisper/wwwhisper-cnb -v
