@@ -1,0 +1,13 @@
+# Sample config file enabling wwwhisper Cloud Native Buildpack on the
+# Heroku Fir platform for a Python based web app.
+[_]
+schema-version = "0.2"
+
+[[io.buildpacks.group]]
+id = "heroku/python"
+
+[[io.buildpacks.group]]
+id = "heroku/procfile"
+
+[[io.buildpacks.group]]
+id = "wwwhisper/wwwhisper-cnb"
