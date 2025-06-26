@@ -2,6 +2,34 @@
 
 set -e
 
+echo "Checking wwwhisper version..."
+
+TMP_DIR=$(mktemp -d)
+trap "rm -rf $TMP_DIR" EXIT
+
+tar -xzf buildpack/wwwhisper-amd64.tgz -C "$TMP_DIR"
+
+WWWHISPER_VERSION=$("$TMP_DIR/wwwhisper" -version)
+echo "wwwhisper version: $WWWHISPER_VERSION"
+
+BUILDPACK_VERSION=$(grep 'version = ' buildpack/buildpack.toml | sed 's/.*version = "\(.*\)".*/\1/')
+echo "Current buildpack version: $BUILDPACK_VERSION"
+
+if [ "$WWWHISPER_VERSION" = "$BUILDPACK_VERSION" ]; then
+    echo "Buildpack version $WWWHISPER_VERSION is already published. Exiting."
+    exit 0
+fi
+
+echo "Updating buildpack version from $BUILDPACK_VERSION to $WWWHISPER_VERSION"
+sed -i "s/version = \"$BUILDPACK_VERSION\"/version = \"$WWWHISPER_VERSION\"/" buildpack/buildpack.toml
+
+# Create commit with updated version and tgz files
+git add buildpack/buildpack.toml buildpack/wwwhisper-amd64.tgz buildpack/wwwhisper-arm64.tgz
+git commit -m "New buildpack version"
+
+# Push changes to origin main
+git push origin main
+
 echo "Packaging a buildpack into Docker image"
 pack buildpack package wwwhisper/wwwhisper-cnb --path buildpack # --config  ./package.toml
 
