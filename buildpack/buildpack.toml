@@ -2,7 +2,7 @@ api = "0.10"
 
 [buildpack]
   id = "wwwhisper/wwwhisper-cnb"
-  version = "1.0.5"
+  version = "1.0.6"
   name = "wwwhisper"
   homepage = "https://github.com/wwwhisper-auth/wwwhisper-cnb"
   description = "Authentication and authorization HTTP proxy for web apps"
