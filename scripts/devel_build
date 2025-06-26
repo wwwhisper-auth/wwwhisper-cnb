@@ -1,0 +1,9 @@
+#!/bin/sh
+
+set -e
+
+echo "Building the buildpack"
+pack build wwwhisper/wwwhisper-cnb --buildpack buildpack --builder heroku/builder:24
+
+echo "Starting created Docker image"
+docker run -it --rm wwwhisper/wwwhisper-cnb bash
