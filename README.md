@@ -16,23 +16,23 @@ add-on](https://elements.heroku.com/addons/wwwhisper).
 
 1. Subscribe to the wwwhisper add-on. In your application folder run:
 
-```
-heroku addons:create wwwhisper:team-3 [--admin=your_email]
-```
+   ```
+   heroku addons:create wwwhisper:team-3 [--admin=your_email]
+   ```
 
-`team-3` is the name of the plan to enable. Run `heroku addons:plans
-wwwhisper` to see all available plans and prices.
+   `team-3` is the name of the plan to enable. Run `heroku addons:plans
+   wwwhisper` to see all available plans and prices.
 
 2. Add the following section to your application's `project.toml` file
    to enable the buildpack:
 
-```
-[[io.buildpacks.group]]
-id = "wwwhisper/wwwhisper-cnb"
-```
+   ```
+   [[io.buildpacks.group]]
+   id = "wwwhisper/wwwhisper-cnb"
+   ```
 
-See sample [project.toml](./sample-configs/project.toml) for a
-reference.
+   See sample [project.toml](./sample-configs/project.toml) for a
+   reference.
 
 3. Modify your `Procfile` to start wwwhisper authorization proxy in front
 of your web app process. Call `wwwhisper-auth` with a single argument
@@ -40,23 +40,23 @@ that contains your usual application launch command. The
 command should be enclosed in single quotes ''. For example, a `Procfile`
 that starts Python fastapi server looks like this:
 
-```
-web: wwwhisper-auth 'fastapi run --port $PORT --host ::'
-```
+   ```
+   web: wwwhisper-auth 'fastapi run --port $PORT --host ::'
+   ```
 
-See sample [Procfile](./sample-configs/Procfile) for a reference.
+   See sample [Procfile](./sample-configs/Procfile) for a reference.
 
 4. Commit the changes:
 
-```
-git add project.toml Procfile
-git commit -m "Enable wwwhisper buildpack.";
-git push heroku main # or master
-```
+   ```
+   git add project.toml Procfile
+   git commit -m "Enable wwwhisper buildpack";
+   git push heroku main # or master
+   ```
 
-After these operations, opening your application URL will show a login
-prompt. Enter your Heroku application owner email to receive a login
-link.
+   After these operations, opening your application URL will show a login
+   prompt. Enter your Heroku application owner email to receive a login
+   link.
 
 ## Technical Details
 
