@@ -34,11 +34,12 @@ add-on](https://elements.heroku.com/addons/wwwhisper).
    See sample [project.toml](./sample-configs/project.toml) for a
    reference.
 
-3. Modify your `Procfile` to start wwwhisper authorization proxy in front
-of your web app process. Call `wwwhisper-auth` with a single argument
-that contains your usual application launch command. The
-command should be enclosed in single quotes ''. For example, a `Procfile`
-that starts Python fastapi server looks like this:
+3. Modify your `Procfile` to start wwwhisper authorization proxy in
+front of your web app process. Modify the `web:` entry to call
+`wwwhisper-auth` with a single argument that contains your usual
+application launch command. The command should be enclosed in single
+quotes ''. For example, a `Procfile` that starts Python fastapi server
+looks like this:
 
    ```
    web: wwwhisper-auth 'fastapi run --port $PORT --host ::'
