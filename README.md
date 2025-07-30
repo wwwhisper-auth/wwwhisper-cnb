@@ -17,10 +17,10 @@ add-on](https://elements.heroku.com/addons/wwwhisper).
 1. Subscribe to the wwwhisper add-on. In your application folder run:
 
    ```
-   heroku addons:create wwwhisper:team-3 [-- --admin=your_email]
+   heroku addons:create wwwhisper:team [-- --admin=your_email]
    ```
 
-   `team-3` is the name of the plan to enable. Run `heroku addons:plans
+   `team` is the name of the plan to enable. Run `heroku addons:plans
    wwwhisper` to see all available plans and prices.
 
 2. Add the following section to your application's `project.toml` file
