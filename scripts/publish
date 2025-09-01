@@ -39,4 +39,5 @@ docker push wwwhisper/wwwhisper-cnb
 echo "Publishing buildpack to CNB registry"
 pack buildpack register wwwhisper/wwwhisper-cnb -v
 
-echo 'Append to the above URL: &template=add-buildpack.md'
+echo 'Switch to the browser window which should have a new GitHub issue filled.'
+echo 'Use the "Create" issue button to finish the publishing process'
